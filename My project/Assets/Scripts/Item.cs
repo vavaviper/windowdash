@@ -39,10 +39,5 @@ public class Item : MonoBehaviour
             HighlightItem(true);
         }
     }
-    
-    void Pickup(PlayerInventory playerInventory)
-    {
-        
-    }
 
 }
