@@ -1,0 +1,26 @@
+[Ll]ibrary/
+[Tt]emp/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
+[Dd]ebug*/
+[Oo]bj/
+[Mm]emoryCaptures/
+sysinfo.txt
+
+# Visual Studio / JetBrains
+.vs/
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# OS generated
+.DS_Store
