@@ -12,7 +12,6 @@ public class Item : MonoBehaviour
     
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-    private bool isHighlighted = false;
     private Transform playerTransform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,10 +33,7 @@ public class Item : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            HighlightItem(true);
-        }
+        
     }
 
 }
