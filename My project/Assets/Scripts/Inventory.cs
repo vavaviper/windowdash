@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-   public bool validInventory(Order order)
+    public bool validInventory(Order order)
     {
         foreach (Item item in items)
         {
@@ -49,15 +49,6 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    void submitOrder(Order order)
-    {
-        if (validInventory(order))
-        {
-            Destroy(order.car);
-            
-            ClearInventory();
-        }
-    }
     void UpdateUI()
     {
         // Clear all slots

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Car : MonoBehaviour
 {   
@@ -6,11 +7,18 @@ public class Car : MonoBehaviour
     private Vector3 startPosition;
     private float screenRightEdge;
     public bool orderValid = true;
+    private bool playerIsNear = false;
+
+    private Renderer carRenderer;
+    private Color originalColor;
+    public Color highlightColor = Color.yellow;
 
     void Start()
     {
         startPosition = transform.position;
-        screenRightEdge = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x + 1f; 
+        carRenderer = GetComponent<Renderer>();
+        screenRightEdge = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x + 1f;
+        originalColor = carRenderer.material.color;
     }
 
     void Update()
@@ -21,5 +29,24 @@ public class Car : MonoBehaviour
             transform.position = startPosition;
             orderValid = false;
         }
+    }
+
+    void Highlight(bool highlight)
+    {
+        carRenderer.material.color = highlight ? highlightColor : originalColor;
+    }
+    // Called by child trigger script
+    public void PlayerEntered()
+    {
+        playerIsNear = true;
+        Highlight(true);
+        Debug.Log("In range of car");
+    }
+
+    public void PlayerExited()
+    {
+        playerIsNear = false;
+        Highlight(false);
+        Debug.Log("Left range of car");
     }
 }
