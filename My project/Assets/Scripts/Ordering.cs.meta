@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e99ed89c964cf7e449cdae707094273f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - carPrefab: {fileID: 248075692091804395, guid: fe1d2988db0b1d44b8bde56c089c4a6f, type: 3}
+  - spawnPoint: {instanceID: 0}
+  - dialogBox: {fileID: 1847570357325263917, guid: c5568c2dd5aa045599f0e8ee0363fb1e, type: 3}
+  - dialogText: {instanceID: 0}
+  - dialogBackground: {instanceID: 0}
+  - itemPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
