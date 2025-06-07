@@ -9,6 +9,7 @@ public class Order : MonoBehaviour
     public TextMeshProUGUI dialogText;
 
     private List<string> currentRequest = new List<string>();
+    private bool dialogShowing = false;
 
     private string[][] possibleOrders = new string[][]
     {
@@ -26,6 +27,19 @@ public class Order : MonoBehaviour
     {
         GenerateRequest();
         ShowDialog();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dialogShowing == true) {
+                CloseDialog();
+            }
+            else {
+                ShowDialog();
+            }
+        }
     }
 
     void GenerateRequest()
@@ -51,6 +65,16 @@ public class Order : MonoBehaviour
                 result += $"• {item}\n";
             }
             dialogText.text = result;
+            dialogShowing = true;
+        }
+    }
+
+    void CloseDialog()
+    {
+        if (dialogBox != null)
+        {
+            dialogBox.SetActive(false);
+            dialogShowing = false;
         }
     }
 }
