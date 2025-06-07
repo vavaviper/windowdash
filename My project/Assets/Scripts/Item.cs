@@ -5,13 +5,13 @@ public class Item : MonoBehaviour
 {
     [Header("Settings")]
     public string itemName;
-    public float highlightIntensity = 1.5f;
+    public float highlightIntensity = 0.1f;
     public int weight;
     public Sprite icon;
-    
+
     [Header("References")]
     [SerializeField] private GameObject player; // Drag player in Inspector
-    
+
     // Components
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
@@ -23,12 +23,12 @@ public class Item : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         itemCollider = GetComponent<BoxCollider2D>();
-        
+
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        
+
         playerCollider = player.GetComponent<CircleCollider2D>();
     }
 
@@ -49,8 +49,19 @@ public class Item : MonoBehaviour
 
     void Highlight(bool shouldHighlight)
     {
-        spriteRenderer.color = shouldHighlight ? 
-            Color.yellow * highlightIntensity : 
-            originalColor;
+        if (shouldHighlight)
+        {
+            Color gold = new Color(1f, 0.843f, 0f, 1f);
+            spriteRenderer.color = new Color(
+                gold.r * highlightIntensity,
+                gold.g * highlightIntensity,
+                gold.b * highlightIntensity,
+                gold.a
+            );
+        }
+        else
+        {
+            spriteRenderer.color = originalColor;
+        }
     }
 }
