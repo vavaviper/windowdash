@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject dashEffectPrefab;
     public float moveSpeed = 7f;
     public float dashSpeed = 14f;
     public float dashDuration = 0.1f;
@@ -58,6 +59,13 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         dashCooldownTimer = dashCooldown;
 
+        // Spawn particle effect
+        if (dashEffectPrefab != null)
+        {
+            GameObject effect = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(effect, 0.5f); // Auto-destroy effect after it's finished
+        }
+
         float startTime = Time.time;
 
         while (Time.time < startTime + dashDuration)
@@ -68,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
         isDashing = false;
     }
+
 
     void HandleInteraction()
     {

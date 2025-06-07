@@ -2966,12 +2966,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449328034}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: -0.69, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.08561, y: 0.38329, z: 0}
   m_LocalScale: {x: 0.4835, y: 0.4835, z: 0.4835}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2058817625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1628134648
 GameObject:
@@ -3719,6 +3719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae949818f06e7401cb3e5499b73b51cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashEffectPrefab: {fileID: 4896174397667254164, guid: 5dd84dc9bf861914480ae18f9c0b2c8f, type: 3}
   moveSpeed: 5
   dashSpeed: 14
   dashDuration: 0.1
@@ -3942,6 +3943,7 @@ Transform:
   - {fileID: 220666626}
   - {fileID: 580361256}
   - {fileID: 1716500561}
+  - {fileID: 1449328038}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &404966969097304655
@@ -3998,11 +4000,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4162623995459668094, guid: 2c2c2ecf391bc451d9436fca600e2822, type: 3}
       propertyPath: m_Size.x
-      value: 1.2898401
+      value: 1.2500637
       objectReference: {fileID: 0}
     - target: {fileID: 4162623995459668094, guid: 2c2c2ecf391bc451d9436fca600e2822, type: 3}
       propertyPath: m_Offset.x
-      value: -0.14492017
+      value: -0.12503171
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162623995459668094, guid: 2c2c2ecf391bc451d9436fca600e2822, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4630536738525906879, guid: 2c2c2ecf391bc451d9436fca600e2822, type: 3}
       propertyPath: icon
@@ -4040,4 +4046,3 @@ SceneRoots:
   - {fileID: 1965917024}
   - {fileID: 240008914}
   - {fileID: 2058817625}
-  - {fileID: 1449328038}
