@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class Order : MonoBehaviour
 {
-    public GameObject carPrefab; // Assign your car sprite prefab here
-    public Transform spawnPoint; // Where the car should appear
+    public GameObject carPrefab;
+    public Transform spawnPoint;
     public float carLifetime = 5f;
 
     private GameObject currentCar;
+    private CircleCollider2D playerCollider;
+    private BoxCollider2D carCollider;
 
     private List<string> currentRequest = new List<string>();
     private List<string> playerCart = new List<string>();
@@ -21,63 +23,85 @@ public class Order : MonoBehaviour
         new string[] { "Soda", "Pop", "Water", "Anti-Freeze"},
         new string[] { "Cheese", "Yogurt", "Ice Cream", "Milk"}
     };
-    
+
     public GameObject dialogBox;
     public Text dialogText;
+    public Image dialogBackground;
     public string[] dialogLines;
-    private int currentLine = 0;
     public float textSpeed = 0.05f;
+    private string[] order;
+    private GameObject player;
+    private bool dialogShown = false;
 
     private bool dialogVisible = false;
 
-    public void ShowDialog(string[] lines)
-    {
-        string fullText = string.Join("\n", lines);
-        dialogText.text = fullText;
-        dialogBox.SetActive(true);
-        dialogVisible = true;
+    void Awake()
+    {   
+        SpawnCar();
+        // Make dialog transparent at start
+        SetDialogAlpha(0f);
+        dialogBox.SetActive(false);
+        carCollider = GetComponent<BoxCollider2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerCollider = player.GetComponent<CircleCollider2D>();
     }
 
     void Update()
     {
-        // Hide dialog when any key is pressed and dialog is visible
-        if (dialogVisible && Input.anyKeyDown)
+        if (playerCollider != null && carCollider != null)
         {
-            dialogBox.SetActive(false);
-            dialogVisible = false;
+            if (playerCollider.IsTouching(carCollider))
+            {
+                if (!dialogShown)
+                {
+                    ShowDialog(order);
+                    dialogShown = true;
+                    Debug.Log("Player touched car - dialog shown.");
+                }
+            }
+            else
+            {
+                if (dialogShown)
+                {
+                    HideDialog();
+                    dialogShown = false;
+                    Debug.Log("Player moved away - dialog hidden.");
+                }
+            }
+        }
+
+        if (dialogVisible && Input.GetKeyDown(KeyCode.S))
+        {
+            HideDialog();
+            dialogShown = false;
         }
     }
 
-    void Start()
-    {
-        SpawnCar();
-        dialogBox.SetActive(false);
-    }
     void SpawnCar()
     {
         currentCar = Instantiate(carPrefab, spawnPoint.position, Quaternion.identity);
+        carCollider = currentCar.GetComponent<BoxCollider2D>();
         GenerateRequest();
+        dialogShown = false;
     }
 
     void GenerateRequest()
     {
         currentRequest.Clear();
 
-        //Select Categories
         int category1 = Random.Range(0, possibleOrders.Length);
         int category2 = Random.Range(0, possibleOrders.Length);
         int category3 = Random.Range(0, possibleOrders.Length);
-        
-        // Select items
+
         string item1 = possibleOrders[category1][Random.Range(0, 4)];
         string item2 = possibleOrders[category2][Random.Range(0, 4)];
         string item3 = possibleOrders[category3][Random.Range(0, 4)];
-        
+
         currentRequest.Add(item1);
         currentRequest.Add(item2);
         currentRequest.Add(item3);
-        
-        ShowDialog(new string[] {
+
+        order = new string[] {
             "NEW DELIVERY REQUEST",
             "-------------------",
             $"• {item1}",
@@ -85,7 +109,33 @@ public class Order : MonoBehaviour
             $"• {item3}",
             "-------------------",
             "Collect these items!"
-        });
+        };
+    }
+
+    public void ShowDialog(string[] lines)
+    {
+        string fullText = string.Join("\n", lines);
+        dialogText.text = fullText;
+        dialogBox.SetActive(true);
+        SetDialogAlpha(1f);
+        dialogVisible = true;
+    }
+
+    public void HideDialog()
+    {
+        SetDialogAlpha(0f);
+        dialogBox.SetActive(false);
+        dialogVisible = false;
+    }
+
+    void SetDialogAlpha(float alpha)
+    {
+        if (dialogBackground != null)
+        {
+            Color tempColor = dialogBackground.color;
+            tempColor.a = alpha;
+            dialogBackground.color = tempColor;
+        }
     }
 
     public void SubmitCart(List<string> cart)
