@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 moveDir = new Vector2(moveX, moveY).normalized;
         transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
 
-        if (playerCircleCollider.IsTouching(itemBoxCollider))
+        if (playerCircleCollider.IsTouching(itemBoxCollider) & Input.GetKeyDown(KeyCode.J))
         {
             Vector2 spawnPosition = new Vector2(3f, 2f);
             Instantiate(item, spawnPosition, Quaternion.identity);
