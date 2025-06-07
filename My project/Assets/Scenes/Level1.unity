@@ -1306,7 +1306,7 @@ MonoBehaviour:
   highlightIntensity: 1.5
   weight: 1
   icon: {fileID: 6779711659878273971, guid: 18b6c0cdb0c4b439a889e814567dd01e, type: 3}
-  player: {fileID: 1622243853075055330, guid: 2c2c2ecf391bc451d9436fca600e2822, type: 3}
+  player: {fileID: 2028559518}
 --- !u!61 &580361254
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2834,7 +2834,7 @@ GameObject:
   - component: {fileID: 1449328036}
   - component: {fileID: 1449328035}
   m_Layer: 0
-  m_Name: IMG_0334_0
+  m_Name: Tomato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2887,7 +2887,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3260,7 +3260,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
