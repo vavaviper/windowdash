@@ -4,8 +4,10 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [Header("Settings")]
+    public string itemName;
     public float highlightIntensity = 1.5f;
-    public float weight = 1f;
+    public int weight;
+    public Sprite icon;
     
     [Header("References")]
     [SerializeField] private GameObject player; // Drag player in Inspector
