@@ -47,6 +47,10 @@ public class GameTimer : MonoBehaviour
     {
         timerText.text = Mathf.CeilToInt(currentTime).ToString();
     }
+    public void RetryLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     void EndLevel()
     {
