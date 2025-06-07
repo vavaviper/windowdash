@@ -20,28 +20,16 @@ public class Item : MonoBehaviour
 
     void Awake()
     {
-        // Get own components
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         itemCollider = GetComponent<BoxCollider2D>();
         
-        // Verify player reference
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
-            if (player == null)
-            {
-                Debug.LogError("No player found! Assign player in Inspector or tag a GameObject as 'Player'");
-                return;
-            }
         }
         
-        // Get player components
         playerCollider = player.GetComponent<CircleCollider2D>();
-        if (playerCollider == null)
-        {
-            Debug.LogError("Player needs a CircleCollider2D!");
-        }
     }
 
     void Update()
