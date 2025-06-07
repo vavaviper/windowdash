@@ -98,8 +98,6 @@ public class Inventory : MonoBehaviour
         return itemNames;
     }
 
-
-
     public void ClearInventory() // Optional, for testing
     {
         items.Clear();

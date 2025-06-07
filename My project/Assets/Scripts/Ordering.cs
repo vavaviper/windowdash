@@ -7,18 +7,19 @@ public class Order : MonoBehaviour
 {
     public GameObject dialogBox;
     public TextMeshProUGUI dialogText;
+    public GameObject car;
 
-    private List<string> currentRequest = new List<string>();
-    private bool dialogShowing = false;
+    public List<string> currentRequest = new List<string>();
+    public bool dialogShowing = false;
 
-    private string[][] possibleOrders = new string[][]
+    public static string[][] possibleOrders = new string[][]
     {
-        new string[] { "Apple", "Banana", "Orange", "Strawberry" },
+        new string[] { "Apple", "Watermelon", "Orange", "Strawberry" },
         new string[] { "Rice", "Bread", "Cookies", "Cake" },
-        new string[] { "Soda", "Pop", "Water", "Anti-Freeze" },
+        new string[] { "Soda", "Pop", "Water", "Juice Boxes" },
         new string[] { "Cheese", "Yogurt", "Ice Cream", "Milk" },
         new string[] { "T-bone steak", "Ham", "Dozen of eggs", "Fish" },
-        new string[] { "Toilet paper", "Soap", "Comb", "Deodorant" },
+        new string[] { "Toilet paper", "Soap", "Comb", "Shampoo" },
         new string[] { "Prongles", "Dorders", "Chocolate", "Granola Bars" },
         new string[] { "Tomato", "Cucumber", "Carrot", "Potato" }
     };
@@ -26,7 +27,7 @@ public class Order : MonoBehaviour
     void Start()
     {
         GenerateRequest();
-        ShowDialog();
+        CloseDialog();
     }
 
     void Update()
@@ -42,7 +43,7 @@ public class Order : MonoBehaviour
         }
     }
 
-    void GenerateRequest()
+    static void GenerateRequest()
     {
         currentRequest.Clear();
 
