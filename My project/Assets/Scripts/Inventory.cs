@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class Inventory : MonoBehaviour
 {
@@ -35,6 +36,28 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+   public bool validInventory(Order order)
+    {
+        foreach (Item item in items)
+        {
+            if (!order.currentRequest.Contains(item.itemName))
+            {
+                Debug.Log("Invalid item in the inventory, you must discard the inventory");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void submitOrder(Order order)
+    {
+        if (validInventory(order))
+        {
+            Destroy(order.car);
+            
+            ClearInventory();
+        }
+    }
     void UpdateUI()
     {
         // Clear all slots
