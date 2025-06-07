@@ -65,6 +65,17 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public List<string> GetItemNames()
+    {
+        List<string> itemNames = new List<string>();
+        foreach (Item item in items)
+        {
+            itemNames.Add(item.itemName);
+        }
+        return itemNames;
+    }
+
+
 
     public void ClearInventory() // Optional, for testing
     {
