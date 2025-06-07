@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private float dashCooldownTimer = 0f;
     private Vector2 lastMoveDirection = Vector2.down; // Default direction
 
+    public bool canMove = true;
+
+
     void Start()
     {
         playerCircleCollider = player.GetComponent<CircleCollider2D>();
@@ -26,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         dashCooldownTimer -= Time.deltaTime;
+
+        if (!canMove) return; // Stop everything if movement is disabled
 
         if (!isDashing)
         {
@@ -39,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
 
     void HandleMovement()
     {
