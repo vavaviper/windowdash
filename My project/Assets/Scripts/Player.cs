@@ -53,13 +53,23 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 moveDir = new Vector2(moveX, moveY).normalized;
 
+        // Apply movement
+        transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
+
+        // Only rotate if there's movement
+        if (moveDir != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle + 90f); // subtract 90 if your sprite faces up by default
+        }
+
+        // Save last direction for dashing
         if (moveDir != Vector2.zero)
         {
             lastMoveDirection = moveDir;
         }
-
-        transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
     }
+
 
     IEnumerator PerformDash()
     {

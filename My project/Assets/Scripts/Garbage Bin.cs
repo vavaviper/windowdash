@@ -15,7 +15,7 @@ public class GarbageBin : MonoBehaviour
 
     void Update()
     {
-        if (playerIsNear && Input.GetKeyDown(KeyCode.F))
+        if (playerIsNear && Input.GetKeyDown(KeyCode.J))
         {
             ClearInventory();
         }
