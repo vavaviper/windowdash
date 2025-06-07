@@ -5571,6 +5571,7 @@ MonoBehaviour:
   dashDuration: 0.1
   dashCooldown: 0.5
   player: {fileID: 2028559518}
+  canMove: 1
 --- !u!50 &2028559521
 Rigidbody2D:
   serializedVersion: 5

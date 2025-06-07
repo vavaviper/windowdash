@@ -56,6 +56,13 @@ public class GameTimer : MonoBehaviour
     {
         levelEnded = true;
 
+        // Disable player movement
+        PlayerMovement player = FindObjectOfType<PlayerMovement>();
+        if (player != null)
+        {
+            player.canMove = false;
+        }
+
         if (playerSucceeded)
         {
             goodJobPanel.SetActive(true);
@@ -64,10 +71,8 @@ public class GameTimer : MonoBehaviour
         {
             failPanel.SetActive(true);
         }
-
-        // Optional: Restart level after a few seconds
-        // StartCoroutine(RestartLevelAfterDelay(3f));
     }
+
 
     IEnumerator RestartLevelAfterDelay(float delay)
     {
