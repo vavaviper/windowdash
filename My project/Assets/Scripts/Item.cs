@@ -8,10 +8,10 @@ public class Item : MonoBehaviour
     public float highlightIntensity = 1.5f;
     public int weight;
     public Sprite icon;
-    
+
     [Header("References")]
     [SerializeField] private GameObject player; // Drag player in Inspector
-    
+
     // Components
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
@@ -20,28 +20,16 @@ public class Item : MonoBehaviour
 
     void Awake()
     {
-        // Get own components
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         itemCollider = GetComponent<BoxCollider2D>();
-        
-        // Verify player reference
+
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
-            if (player == null)
-            {
-                Debug.LogError("No player found! Assign player in Inspector or tag a GameObject as 'Player'");
-                return;
-            }
         }
-        
-        // Get player components
+
         playerCollider = player.GetComponent<CircleCollider2D>();
-        if (playerCollider == null)
-        {
-            Debug.LogError("Player needs a CircleCollider2D!");
-        }
     }
 
     void Update()
@@ -61,8 +49,19 @@ public class Item : MonoBehaviour
 
     void Highlight(bool shouldHighlight)
     {
-        spriteRenderer.color = shouldHighlight ? 
-            Color.yellow * highlightIntensity : 
-            originalColor;
+        if (shouldHighlight)
+        {
+            Color gold = new Color(1f, 0.843f, 0f, 1f);
+            spriteRenderer.color = new Color(
+                gold.r * highlightIntensity,
+                gold.g * highlightIntensity,
+                gold.b * highlightIntensity,
+                gold.a
+            );
+        }
+        else
+        {
+            spriteRenderer.color = originalColor;
+        }
     }
 }

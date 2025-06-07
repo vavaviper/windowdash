@@ -42,6 +42,7 @@ public class Inventory : MonoBehaviour
         {
             slot.sprite = null;
             slot.enabled = false;
+            slot.color = new Color(1f, 1f, 1f, 1f); // reset to full opacity
         }
 
         int slotIndex = 0;
@@ -54,10 +55,27 @@ public class Inventory : MonoBehaviour
 
                 inventorySlots[slotIndex].sprite = item.icon;
                 inventorySlots[slotIndex].enabled = true;
+
+                // First icon = full opacity, others = 60%
+                float alpha = (i == 0) ? 1f : 0.6f;
+                inventorySlots[slotIndex].color = new Color(1f, 1f, 1f, alpha);
+
                 slotIndex++;
             }
         }
     }
+
+    public List<string> GetItemNames()
+    {
+        List<string> itemNames = new List<string>();
+        foreach (Item item in items)
+        {
+            itemNames.Add(item.itemName);
+        }
+        return itemNames;
+    }
+
+
 
     public void ClearInventory() // Optional, for testing
     {

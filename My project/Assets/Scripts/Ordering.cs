@@ -1,80 +1,80 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
-public class CarOrderSystem : MonoBehaviour
+public class Order : MonoBehaviour
 {
-    public GameObject carPrefab; // Assign your car sprite prefab here
-    public Transform spawnPoint; // Where the car should appear
-    public float carLifetime = 5f;
-
-    private GameObject currentCar;
+    public GameObject dialogBox;
+    public TextMeshProUGUI dialogText;
 
     private List<string> currentRequest = new List<string>();
-    private List<string> playerCart = new List<string>();
+    private bool dialogShowing = false;
 
     private string[][] possibleOrders = new string[][]
     {
-        new string[] { "Apple", "Banana" },
-        new string[] { "Milk", "Bread" },
-        new string[] { "Soda" },
-        new string[] { "Cheese", "Ham", "Bread" }
+        new string[] { "Apple", "Banana", "Orange", "Strawberry" },
+        new string[] { "Rice", "Bread", "Cookies", "Cake" },
+        new string[] { "Soda", "Pop", "Water", "Anti-Freeze" },
+        new string[] { "Cheese", "Yogurt", "Ice Cream", "Milk" },
+        new string[] { "T-bone steak", "Ham", "Dozen of eggs", "Fish" },
+        new string[] { "Toilet paper", "Soap", "Comb", "Deodorant" },
+        new string[] { "Prongles", "Dorders", "Chocolate", "Granola Bars" },
+        new string[] { "Tomato", "Cucumber", "Carrot", "Potato" }
     };
 
     void Start()
     {
-        SpawnCar();
+        GenerateRequest();
+        CloseDialog();
     }
 
-    void SpawnCar()
+    void Update()
     {
-        currentCar = Instantiate(carPrefab, spawnPoint.position, Quaternion.identity);
-        GenerateRequest();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dialogShowing == true) {
+                CloseDialog();
+            }
+            else {
+                ShowDialog();
+            }
+        }
     }
 
     void GenerateRequest()
     {
         currentRequest.Clear();
-        string[] order = possibleOrders[Random.Range(0, possibleOrders.Length)];
-        currentRequest.AddRange(order);
-        Debug.Log("Car Request: " + string.Join(", ", currentRequest));
-    }
 
-    public void SubmitCart(List<string> cart)
-    {
-        playerCart = new List<string>(cart);
-
-        if (IsOrderCorrect())
+        for (int i = 0; i < 3; i++)
         {
-            Debug.Log("Order correct!");
-            StartCoroutine(CompleteOrder());
-        }
-        else
-        {
-            Debug.Log("Order incorrect.");
+            int cat = Random.Range(0, possibleOrders.Length);
+            int item = Random.Range(0, possibleOrders[cat].Length);
+            currentRequest.Add(possibleOrders[cat][item]);
         }
     }
 
-    bool IsOrderCorrect()
+    void ShowDialog()
     {
-        if (playerCart.Count != currentRequest.Count)
-            return false;
-
-        List<string> tempRequest = new List<string>(currentRequest);
-
-        foreach (var item in playerCart)
+        if (dialogBox != null && dialogText != null)
         {
-            if (!tempRequest.Remove(item))
-                return false;
+            dialogBox.SetActive(true);
+            string result = "DELIVERY ORDER\n-------------------\n";
+            foreach (var item in currentRequest)
+            {
+                result += $"• {item}\n";
+            }
+            dialogText.text = result;
+            dialogShowing = true;
         }
-
-        return true;
     }
 
-    IEnumerator CompleteOrder()
+    void CloseDialog()
     {
-        Destroy(currentCar);
-        yield return new WaitForSeconds(1f);
-        SpawnCar();
+        if (dialogBox != null)
+        {
+            dialogBox.SetActive(false);
+            dialogShowing = false;
+        }
     }
 }
