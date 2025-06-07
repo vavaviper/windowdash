@@ -26,7 +26,7 @@ public class Order : MonoBehaviour
     void Start()
     {
         GenerateRequest();
-        ShowDialog();
+        CloseDialog();
     }
 
     void Update()
