@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E) && collidedObject != null)
+        if (Input.GetKeyDown(KeyCode.J) && collidedObject != null)
         {
             bool added = Inventory.instance.TryAddItem(collidedObject);
             if (added)
