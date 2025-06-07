@@ -1,12 +1,21 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 7f;
+    public float dashSpeed = 14f;
+    public float dashDuration = 0.1f;
+    public float dashCooldown = 0.5f;
+
     public GameObject player;
 
     private CircleCollider2D playerCircleCollider;
     private Item collidedObject;
+
+    private bool isDashing = false;
+    private float dashCooldownTimer = 0f;
+    private Vector2 lastMoveDirection = Vector2.down; // Default direction
 
     void Start()
     {
@@ -15,8 +24,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
-        HandleInteraction();
+        dashCooldownTimer -= Time.deltaTime;
+
+        if (!isDashing)
+        {
+            HandleMovement();
+            HandleInteraction();
+
+            if (Input.GetKeyDown(KeyCode.K) && dashCooldownTimer <= 0f)
+            {
+                StartCoroutine(PerformDash());
+            }
+        }
     }
 
     void HandleMovement()
@@ -25,7 +44,29 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         Vector2 moveDir = new Vector2(moveX, moveY).normalized;
+
+        if (moveDir != Vector2.zero)
+        {
+            lastMoveDirection = moveDir;
+        }
+
         transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
+    }
+
+    IEnumerator PerformDash()
+    {
+        isDashing = true;
+        dashCooldownTimer = dashCooldown;
+
+        float startTime = Time.time;
+
+        while (Time.time < startTime + dashDuration)
+        {
+            transform.position += (Vector3)lastMoveDirection * dashSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        isDashing = false;
     }
 
     void HandleInteraction()
