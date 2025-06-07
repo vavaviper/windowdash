@@ -1260,7 +1260,7 @@ Transform:
   m_GameObject: {fileID: 627019762}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.84792, y: 0.66101, z: 0}
+  m_LocalPosition: {x: -9.84792, y: -0.02, z: 0}
   m_LocalScale: {x: 1, y: -9.345781, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1883,7 +1883,7 @@ Transform:
   m_GameObject: {fileID: 1212418947}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: -1.96792, y: -4.09899, z: 0}
+  m_LocalPosition: {x: -1.97, y: -4.76, z: 0}
   m_LocalScale: {x: 1, y: -17.582218, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2401,7 +2401,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.90208, y: 0.18101001, z: 0}
-  m_LocalScale: {x: 1, y: -9.345781, z: 1}
+  m_LocalScale: {x: 1, y: -10.805593, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 223573128}
@@ -3122,11 +3122,11 @@ PrefabInstance:
       objectReference: {fileID: 2028559518}
     - target: {fileID: 4630536738525906879, guid: 2c2c2ecf391bc451d9436fca600e2822, type: 3}
       propertyPath: weight
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4630536738525906879, guid: 2c2c2ecf391bc451d9436fca600e2822, type: 3}
       propertyPath: itemName
-      value: Red Circle
+      value: Apple
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
