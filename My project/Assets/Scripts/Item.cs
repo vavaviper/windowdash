@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Collider2D))]
 public class Item : MonoBehaviour
@@ -11,19 +12,16 @@ public class Item : MonoBehaviour
     public float highlightRadius = 1.5f; // How close player needs to be
     
     private SpriteRenderer spriteRenderer;
-    private Color originalColor;
     private Transform playerTransform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         
-        CircleCollider2D proximityCollider = gameObject.AddComponent<CircleCollider2D>();
-        proximityCollider.radius = highlightRadius;
-        proximityCollider.isTrigger = true;
+        CircleCollider2D trigger = gameObject.AddComponent<CircleCollider2D>();
+        trigger.radius = highlightRadius;
+        trigger.isTrigger = true;
     }
 
     // Update is called once per frame
@@ -31,9 +29,17 @@ public class Item : MonoBehaviour
     {
         
     }
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            Highlight(false);
+        }
+    }
+
+    void Highlight(bool enable)
+    {
+        GetComponent<SpriteRenderer>().color = enable ? Color.yellow : Color.white;
     }
 
 }
