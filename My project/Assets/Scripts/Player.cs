@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleMovement();
             HandleInteraction();
+            clearInventory();
 
             if (Input.GetKeyDown(KeyCode.K) && dashCooldownTimer <= 0f)
             {
@@ -77,7 +78,13 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
     }
 
-
+    void clearInventory()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Inventory.instance.ClearInventory();
+        }
+    }
     void HandleInteraction()
     {
         if (Input.GetKeyDown(KeyCode.J) && collidedObject != null)

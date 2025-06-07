@@ -4377,7 +4377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae949818f06e7401cb3e5499b73b51cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashEffectPrefab: {fileID: 0}
+  dashEffectPrefab: {fileID: 4896174397667254164, guid: 5dd84dc9bf861914480ae18f9c0b2c8f, type: 3}
   moveSpeed: 5
   dashSpeed: 14
   dashDuration: 0.1
