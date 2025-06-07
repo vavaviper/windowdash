@@ -330,10 +330,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Apple
-  highlightIntensity: 1.2
+  highlightIntensity: 1.5
   weight: 1
   icon: {fileID: 8692917789463179084, guid: b4208493531c8450db172932691e67e0, type: 3}
-  player: {fileID: 1622243853075055330, guid: 2c2c2ecf391bc451d9436fca600e2822, type: 3}
+  player: {fileID: 2028559518}
 --- !u!61 &165431027
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ Transform:
   m_GameObject: {fileID: 165431025}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.2072, y: 0.6466, z: 0}
+  m_LocalPosition: {x: -7.31, y: -2.05, z: 0}
   m_LocalScale: {x: 0.47155562, y: 0.47155562, z: 0.47155562}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -557,11 +557,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b2cdba31f4a4a36947b7f64d424086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
-  highlightIntensity: 0.1
+  itemName: Carrot
+  highlightIntensity: 1.5
   weight: 1
   icon: {fileID: -8914645142001640663, guid: 52886d40a4ad045e2b1427897cdc38ef, type: 3}
-  player: {fileID: 1622243853075055330, guid: 2c2c2ecf391bc451d9436fca600e2822, type: 3}
+  player: {fileID: 2028559518}
 --- !u!61 &220666624
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3776,3 +3776,4 @@ SceneRoots:
   - {fileID: 240008914}
   - {fileID: 165431029}
   - {fileID: 220666626}
+  - {fileID: 2058817625}

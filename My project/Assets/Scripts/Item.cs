@@ -5,7 +5,7 @@ public class Item : MonoBehaviour
 {
     [Header("Settings")]
     public string itemName;
-    public float highlightIntensity = 0.1f;
+    public float highlightIntensity = 1.5f;
     public int weight;
     public Sprite icon;
 
