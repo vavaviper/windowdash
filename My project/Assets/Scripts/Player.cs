@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 7f;
     public GameObject player;
-    public GameObject itemPrefab;
 
     private CircleCollider2D playerCircleCollider;
-    public Item collidedObject;
+    private Item collidedObject;
 
     void Start()
     {
@@ -16,29 +15,52 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Movement
+        HandleMovement();
+        HandleInteraction();
+    }
+
+    void HandleMovement()
+    {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
         Vector2 moveDir = new Vector2(moveX, moveY).normalized;
         transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
+    }
 
-        // J key to spawn item
-        if (Input.GetKeyDown(KeyCode.J))
+    void HandleInteraction()
+    {
+        if (Input.GetKeyDown(KeyCode.J) && collidedObject != null)
         {
-            Vector2 spawnPosition = new Vector2(3f, 2f);
-            Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
+            bool added = Inventory.instance.TryAddItem(collidedObject);
+            if (added)
+            {
+                Debug.Log("Picked up: " + collidedObject.itemName);
+            }
+            else
+            {
+                Debug.Log("Inventory full. Could not pick up: " + collidedObject.itemName);
+            }
         }
     }
 
-    // Called automatically when touching a trigger
     void OnTriggerEnter2D(Collider2D other)
     {
-        Item thing = other.GetComponent<Item>();
-        if (thing != null)
+        Item item = other.GetComponent<Item>();
+        if (item != null)
         {
-            collidedObject = thing;
-            Debug.Log("Touched item: " + thing.name);
+            collidedObject = item;
+            Debug.Log("In range of: " + item.itemName);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        Item item = other.GetComponent<Item>();
+        if (item != null && item == collidedObject)
+        {
+            collidedObject = null;
+            Debug.Log("Left range of: " + item.itemName);
         }
     }
 }
