@@ -1,41 +1,65 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(SpriteRenderer), typeof(BoxCollider2D))]
 public class Item : MonoBehaviour
 {
-    public string itemName = "Item";
-    public Sprite inventoryIcon;
-    
+    [Header("Settings")]
     public float highlightIntensity = 1.5f;
-    public float highlightRadius = 1.5f;
+    public float weight = 1f;
     
+    [Header("References")]
+    [SerializeField] private GameObject player; // Drag player in Inspector
+    
+    // Components
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-    public float weight;
+    private BoxCollider2D itemCollider;
+    private CircleCollider2D playerCollider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        // Get own components
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
+        itemCollider = GetComponent<BoxCollider2D>();
         
-        CircleCollider2D trigger = gameObject.AddComponent<CircleCollider2D>();
-        trigger.radius = highlightRadius;
-        trigger.isTrigger = true;
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        // Verify player reference
+        if (player == null)
         {
-            Highlight(true);
+            player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+            {
+                Debug.LogError("No player found! Assign player in Inspector or tag a GameObject as 'Player'");
+                return;
+            }
+        }
+        
+        // Get player components
+        playerCollider = player.GetComponent<CircleCollider2D>();
+        if (playerCollider == null)
+        {
+            Debug.LogError("Player needs a CircleCollider2D!");
         }
     }
 
-    void Highlight(bool enable)
+    void Update()
     {
-        spriteRenderer.color = enable ? 
+        if (playerCollider != null && itemCollider != null)
+        {
+            if (playerCollider.IsTouching(itemCollider))
+            {
+                Highlight(true);
+            }
+            else
+            {
+                Highlight(false);
+            }
+        }
+    }
+
+    void Highlight(bool shouldHighlight)
+    {
+        spriteRenderer.color = shouldHighlight ? 
             Color.yellow * highlightIntensity : 
             originalColor;
     }
