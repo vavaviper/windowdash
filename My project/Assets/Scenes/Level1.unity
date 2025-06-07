@@ -2275,8 +2275,8 @@ GameObject:
   m_Component:
   - component: {fileID: 658515898}
   - component: {fileID: 658515899}
-  - component: {fileID: 658515901}
   - component: {fileID: 658515900}
+  - component: {fileID: 658515901}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -2377,11 +2377,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 658515897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99ed89c964cf7e449cdae707094273f, type: 3}
+  m_Script: {fileID: 11500000, guid: db978a6db7f2c4b8da0a5979ca561121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogBox: {fileID: 0}
-  dialogText: {fileID: 0}
+  speed: 0
+  orderValid: 1
 --- !u!1 &661522395
 GameObject:
   m_ObjectHideFlags: 0
