@@ -9,6 +9,13 @@ public class LevelSelect : MonoBehaviour
 
     void Start()
     {
+        void Start()
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+            Debug.Log("Progress reset on start");
+        }
+
         for (int i = 0; i < levelButtons.Length; i++)
         {
             bool unlocked = (i == 0) || PlayerPrefs.GetInt("Level" + i + "Completed", 0) == 1;
