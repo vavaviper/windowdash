@@ -7771,7 +7771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509e34b44089e524184efe7fb141635c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 40
+  timeLimit: 45
   timerText: {fileID: 1258591051}
   goodJobPanel: {fileID: 1259306690}
   failPanel: {fileID: 241403721}
