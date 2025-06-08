@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -70,6 +70,8 @@ public class GameTimer : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+
+
     void EndLevel()
     {
         levelEnded = true;
@@ -83,6 +85,11 @@ public class GameTimer : MonoBehaviour
 
         if (playerSucceeded)
         {
+            // ✅ Mark this level as completed
+            string currentScene = SceneManager.GetActiveScene().name;
+            PlayerPrefs.SetInt("Level1Completed", 1);
+            PlayerPrefs.Save();
+
             goodJobPanel.SetActive(true);
         }
         else
@@ -90,6 +97,7 @@ public class GameTimer : MonoBehaviour
             failPanel.SetActive(true);
         }
     }
+
 
 
     IEnumerator RestartLevelAfterDelay(float delay)
