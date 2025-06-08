@@ -35,6 +35,7 @@ public class Order : MonoBehaviour
         if (dialogShowing)
         {
             ShowDialog();
+
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -75,7 +76,7 @@ public class Order : MonoBehaviour
 
             attempt++;
         }
-
+        int orderWeight = currentWeight;
         Debug.Log("Generated Order (Total Weight: " + currentWeight + "):");
         foreach (var item in currentRequest)
         {
