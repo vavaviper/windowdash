@@ -33,9 +33,18 @@ public class Car : MonoBehaviour
             speed = normalspeed;
             orderScript.GenerateRequest();
         }
-        if (playerIsNear && Input.GetKeyDown(KeyCode.J))
+        if (playerIsNear)
         {
-            orderScript.SubmitOrder();
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                orderScript.SubmitOrder();
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && (!orderScript.orderTaken))
+            {
+                orderScript.orderTaken = true;
+                orderScript.ShowDialog();
+                orderScript.dialogShowing = true;
+            }
         }
     }
 

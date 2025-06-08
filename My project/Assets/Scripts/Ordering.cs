@@ -10,6 +10,7 @@ public class Order : MonoBehaviour
     public GameObject car;
     public GameTimer gameTimer;
     public TMP_Text scoring;
+    public bool orderTaken = false;
     public int score { get; private set; }
 
     public List<string> currentRequest = new List<string>();
@@ -59,10 +60,14 @@ public class Order : MonoBehaviour
         {
             ShowDialog();
         }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (dialogShowing)
+            if (!orderTaken)
+            {
+                Debug.Log("You must take the order at the car");
+                // for some reason this message shows twice when pressing space
+            }
+            else if (dialogShowing)
             {
                 CloseDialog();
                 dialogShowing = false;
@@ -80,6 +85,7 @@ public class Order : MonoBehaviour
         currentRequest.Clear();
         int currentWeight = 0;
         int attempt = 0;
+        orderTaken = false;
 
         while (currentWeight < minWeight && attempt < 100)
         {
@@ -156,7 +162,7 @@ public class Order : MonoBehaviour
         Debug.Log("new score: " + score.ToString());
     }
 
-    void ShowDialog()
+    public void ShowDialog()
     {
         if (dialogBox != null && dialogText != null)
         {
@@ -171,7 +177,7 @@ public class Order : MonoBehaviour
         }
     }
 
-    void CloseDialog()
+    public void CloseDialog()
     {
         if (dialogBox != null)
         {
