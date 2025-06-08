@@ -2359,6 +2359,9 @@ MonoBehaviour:
   car: {fileID: 658515897}
   currentRequest: []
   dialogShowing: 0
+  minWeight: 10
+  maxWeight: 15
+  currentWeight: 0
 --- !u!114 &658515901
 MonoBehaviour:
   m_ObjectHideFlags: 0
