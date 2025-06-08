@@ -3,20 +3,22 @@ using UnityEngine.UIElements;
 
 public class Car : MonoBehaviour
 {
-    public float speed;
+    public float normalspeed = 0.5f;
+    public float driveAwaySpeed = 5f;
     private Vector3 startPosition;
     private float screenRightEdge;
-    public bool orderValid = true;
     private bool playerIsNear = false;
     public Order orderScript;
 
     private Renderer carRenderer;
     private Color originalColor;
     public Color highlightColor = Color.yellow;
+    private float speed;
 
     void Start()
     {
         startPosition = transform.position;
+        speed = normalspeed;
         carRenderer = GetComponent<Renderer>();
         screenRightEdge = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x + 1f;
         originalColor = carRenderer.material.color;
@@ -28,7 +30,8 @@ public class Car : MonoBehaviour
         if (transform.position.x > screenRightEdge)
         {
             transform.position = startPosition;
-            orderValid = false;
+            speed = normalspeed;
+            orderScript.GenerateRequest();
         }
         if (playerIsNear && Input.GetKeyDown(KeyCode.J))
         {
@@ -53,5 +56,10 @@ public class Car : MonoBehaviour
         playerIsNear = false;
         Highlight(false);
         Debug.Log("Left range of car");
+    }
+
+    public void SpeedChange()
+    {
+        speed = driveAwaySpeed;
     }
 }
