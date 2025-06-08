@@ -11,9 +11,10 @@ public class LevelSelect : MonoBehaviour
     {
         void Start()
         {
-            PlayerPrefs.DeleteAll();
+            PlayerPrefs.DeleteKey("Level1Completed"); // Level 2 is unlocked when Level 1 is completed
             PlayerPrefs.Save();
-            Debug.Log("Progress reset on start");
+            Debug.Log("Level 2 has been locked again.");
+
         }
 
         for (int i = 0; i < levelButtons.Length; i++)
