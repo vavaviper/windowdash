@@ -2115,7 +2115,6 @@ GameObject:
   - component: {fileID: 655665729}
   - component: {fileID: 655665728}
   - component: {fileID: 655665727}
-  - component: {fileID: 655665731}
   m_Layer: 0
   m_Name: Garbage Bin
   m_TagString: Untagged
@@ -2178,9 +2177,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 655665726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2085f40fea9c1b34392ec58b12cdfdf2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ab2a173681c5da4cafcac59035568b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!212 &655665729
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2252,19 +2252,6 @@ Transform:
   - {fileID: 1661366991}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &655665731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655665726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab2a173681c5da4cafcac59035568b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &658515897
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,7 +4763,6 @@ GameObject:
   - component: {fileID: 1661366991}
   - component: {fileID: 1661366993}
   - component: {fileID: 1661366992}
-  - component: {fileID: 1661366994}
   m_Layer: 0
   m_Name: Garbage Bin Trigger
   m_TagString: Untagged
@@ -4846,18 +4832,6 @@ BoxCollider2D:
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1661366993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661366990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90c845007e76594bb7025fbe080c6ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1661366994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
