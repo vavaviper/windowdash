@@ -7,54 +7,157 @@ public class Order : MonoBehaviour
 {
     public GameObject dialogBox;
     public TextMeshProUGUI dialogText;
+    public GameObject car;
+    public GameTimer gameTimer;
+    public TMP_Text scoring;
+    public bool orderTaken = false;
+    public int score { get; private set; }
 
-    private List<string> currentRequest = new List<string>();
-    private bool dialogShowing = false;
+    public List<string> currentRequest = new List<string>();
+    public bool dialogShowing = false;
 
-    private string[][] possibleOrders = new string[][]
+    // Weight-based item categories: [0] = weight 1, [1] = weight 2, [2] = weight 3
+    public static string[][] possibleOrders = new string[][]
     {
-        new string[] { "Apple", "Banana", "Orange", "Strawberry" },
-        new string[] { "Rice", "Bread", "Cookies", "Cake" },
-        new string[] { "Soda", "Pop", "Water", "Anti-Freeze" },
-        new string[] { "Cheese", "Yogurt", "Ice Cream", "Milk" },
-        new string[] { "T-bone steak", "Ham", "Dozen of eggs", "Fish" },
-        new string[] { "Toilet paper", "Soap", "Comb", "Deodorant" },
-        new string[] { "Prongles", "Dorders", "Chocolate", "Granola Bars" },
-        new string[] { "Tomato", "Cucumber", "Carrot", "Potato" }
+        new string[] {"Apple", "Orange", "Strawberry","Carrot","Pop","Soap","Soda","Toilet Paper","Tomato","Bread","Yogurt","Comb","Prongle","Dorders","Chocolate Bar"},
+        new string[] {"Cookie","Cucumber","Water Bottle","Ice Cream","Cake","Shampoo","Fish","Steak","Ham","Milk","Granola Bars"},
+        new string[] {"Cheese", "Juice Box", "Potatoes","Watermelon","Rice"}
     };
 
+    public int minWeight = 1;
+    public int maxWeight = 3;
+    public int extraScoreWeight;
+    public int orderWeight;
+    public int currentWeight;
     void Start()
     {
+        score = 0;
         GenerateRequest();
         CloseDialog();
+        extraScoreWeight = (int)Mathf.Ceil((minWeight + maxWeight) / 2);
+
+        if (dialogBox == null)
+        {
+            dialogBox = GameObject.Find("Panel");
+        }
+        if (dialogText == null && dialogBox != null)
+        {
+            dialogText = dialogBox.GetComponent<TextMeshProUGUI>();
+        }
+        if (car == null)
+        {
+            car = GameObject.Find("Car");
+        }
+        if (scoring == null)
+        {
+            scoring = GameObject.Find("ScoreBoard").GetComponentInChildren<TMP_Text>();
+        }
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (dialogShowing == true) {
+            if (!orderTaken)
+            {
+                Debug.Log("You must take the order at the car");
+                // for some reason this message shows twice when pressing space
+            }
+            else if (dialogShowing)
+            {
                 CloseDialog();
             }
-            else {
+            else
+            {
                 ShowDialog();
             }
         }
     }
 
-    void GenerateRequest()
+    public void GenerateRequest()
     {
         currentRequest.Clear();
+        int currentWeight = 0;
+        int attempt = 0;
+        orderTaken = false;
 
-        for (int i = 0; i < 3; i++)
+        while (currentWeight < minWeight && attempt < 100)
         {
-            int cat = Random.Range(0, possibleOrders.Length);
-            int item = Random.Range(0, possibleOrders[cat].Length);
-            currentRequest.Add(possibleOrders[cat][item]);
+            int weightCategory = Random.Range(0, possibleOrders.Length); // 0 = weight 1, 1 = weight 2, 2 = weight 3
+            string[] category = possibleOrders[weightCategory];
+            if (category.Length == 0) continue;
+
+            string selectedItem = category[Random.Range(0, category.Length)];
+            int itemWeight = weightCategory + 1;
+
+            if (currentWeight + itemWeight <= maxWeight)
+            {
+                currentRequest.Add(selectedItem);
+                currentWeight += itemWeight;
+            }
+
+            attempt++;
+        }
+        orderWeight = currentWeight;
+        Debug.Log("Generated Order (Total Weight: " + currentWeight + "):");
+        foreach (var item in currentRequest)
+        {
+            Debug.Log(item);
         }
     }
 
-    void ShowDialog()
+    public bool validInventory(List<string> curOrder)
+    {
+        List<string> itemNames = Inventory.instance.GetItemNames();
+        foreach (string itemName in itemNames)
+        {
+            if (!curOrder.Contains(itemName))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void SubmitOrder()
+    {
+        if (validInventory(currentRequest))
+        {
+            List<string> itemNames = Inventory.instance.GetItemNames();
+            foreach (string itemName in itemNames)
+            {
+                currentRequest.Remove(itemName);
+            }
+            Inventory.instance.ClearInventory();
+
+            if (currentRequest.Count == 0)
+            {
+                Debug.Log("Order Completed!");
+                updateScore();
+                CloseDialog();
+                car.GetComponent<Car>().SpeedChange();
+            }
+        }
+        else
+        {
+            Debug.Log("Invalid item in the inventory, you must discard at the garbage bin");
+        }
+    }
+    public void updateScore()
+    {
+        if (currentWeight >= extraScoreWeight)
+        {
+            score += (int)(currentWeight * 1.5);
+        }
+        else
+        {
+            score += orderWeight;
+        }
+        scoring.text = score.ToString();
+        Debug.Log("new score: " + score.ToString());
+    }
+
+    public void ShowDialog()
     {
         if (dialogBox != null && dialogText != null)
         {
@@ -69,7 +172,7 @@ public class Order : MonoBehaviour
         }
     }
 
-    void CloseDialog()
+    public void CloseDialog()
     {
         if (dialogBox != null)
         {

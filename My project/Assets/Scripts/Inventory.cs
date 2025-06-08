@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class Inventory : MonoBehaviour
 {
@@ -32,6 +33,19 @@ public class Inventory : MonoBehaviour
         items.Add(item);
         currentWeight += item.weight;
         UpdateUI();
+        return true;
+    }
+
+    public bool validInventory(Order order)
+    {
+        foreach (Item item in items)
+        {
+            if (!order.currentRequest.Contains(item.itemName))
+            {
+                Debug.Log("Invalid item in the inventory, you must discard the inventory");
+                return false;
+            }
+        }
         return true;
     }
 
@@ -74,8 +88,6 @@ public class Inventory : MonoBehaviour
         }
         return itemNames;
     }
-
-
 
     public void ClearInventory() // Optional, for testing
     {
