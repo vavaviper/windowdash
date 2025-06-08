@@ -95,4 +95,8 @@ public class GameTimer : MonoBehaviour
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    
+    public float timeUsed () {
+        return timeLimit - currentTime;
+    }
 }
