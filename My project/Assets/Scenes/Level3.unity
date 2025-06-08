@@ -2979,8 +2979,8 @@ MonoBehaviour:
   orderTaken: 0
   currentRequest: []
   dialogShowing: 0
-  minWeight: 1
-  maxWeight: 3
+  minWeight: 5
+  maxWeight: 9
   extraScoreWeight: 0
   orderWeight: 0
   currentWeight: 0
@@ -3439,7 +3439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startScreenPanel: {fileID: 164013368}
   startScreenText: {fileID: 446332011}
-  pointsGoal: 8
+  pointsGoal: 30
 --- !u!1 &827742337
 GameObject:
   m_ObjectHideFlags: 0
@@ -7734,7 +7734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509e34b44089e524184efe7fb141635c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 30
+  timeLimit: 60
   timerText: {fileID: 1258591051}
   goodJobPanel: {fileID: 1259306690}
   failPanel: {fileID: 241403721}
