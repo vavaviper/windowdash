@@ -7740,6 +7740,7 @@ MonoBehaviour:
   failPanel: {fileID: 241403721}
   orderScript: {fileID: 658515900}
   startScreen: {fileID: 788166444}
+  levelName: Level3Completed
   playerSucceeded: 0
 --- !u!1001 &2025076456
 PrefabInstance:
