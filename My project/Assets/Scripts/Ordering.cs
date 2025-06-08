@@ -8,6 +8,9 @@ public class Order : MonoBehaviour
     public GameObject dialogBox;
     public TextMeshProUGUI dialogText;
     public GameObject car;
+    public GameTimer gameTimer;
+    public TMP_Text scoring;
+    public int score { get; private set; }
 
     public List<string> currentRequest = new List<string>();
     public bool dialogShowing = false;
@@ -20,14 +23,34 @@ public class Order : MonoBehaviour
         new string[] {"Cheese", "Juice Box", "Potatoes","Watermelon","Rice"}
     };
 
-    public int minWeight = 10;
-    public int maxWeight = 15;
-
+    public int minWeight = 1;
+    public int maxWeight = 3;
+    public int extraScoreWeight;
+    public int orderWeight;
     public int currentWeight;
     void Start()
     {
+        score = 0;
         GenerateRequest();
         CloseDialog();
+        extraScoreWeight = (int)Mathf.Ceil((minWeight + maxWeight) / 2);
+
+        if (dialogBox == null)
+        {
+            dialogBox = GameObject.Find("Panel");
+        }
+        if (dialogText == null && dialogBox != null)
+        {
+            dialogText = dialogBox.GetComponent<TextMeshProUGUI>();
+        }
+        if (car == null)
+        {
+            car = GameObject.Find("Car");
+        }
+        if (scoring == null)
+        {
+            scoring = GameObject.Find("ScoreBoard").GetComponentInChildren<TMP_Text>();
+        }
     }
 
     void Update()
@@ -35,7 +58,6 @@ public class Order : MonoBehaviour
         if (dialogShowing)
         {
             ShowDialog();
-
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -76,7 +98,7 @@ public class Order : MonoBehaviour
 
             attempt++;
         }
-        int orderWeight = currentWeight;
+        orderWeight = currentWeight;
         Debug.Log("Generated Order (Total Weight: " + currentWeight + "):");
         foreach (var item in currentRequest)
         {
@@ -111,13 +133,28 @@ public class Order : MonoBehaviour
             if (currentRequest.Count == 0)
             {
                 Debug.Log("Order Completed!");
+                updateScore();
                 car.GetComponent<Car>().SpeedChange();
+                GenerateRequest();
             }
         }
         else
         {
             Debug.Log("Invalid item in the inventory, you must discard at the garbage bin");
         }
+    }
+    public void updateScore()
+    {
+        if (currentWeight >= extraScoreWeight)
+        {
+            score += (int)(currentWeight * 1.5);
+        }
+        else
+        {
+            score += orderWeight;
+        }
+        scoring.text = score.ToString();
+        Debug.Log("new score: " + score.ToString());
     }
 
     void ShowDialog()
