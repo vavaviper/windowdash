@@ -32,6 +32,7 @@ public class Car : MonoBehaviour
             transform.position = startPosition;
             speed = normalspeed;
             orderScript.GenerateRequest();
+            orderScript.CloseDialog();
         }
         if (playerIsNear)
         {
@@ -43,7 +44,6 @@ public class Car : MonoBehaviour
             {
                 orderScript.orderTaken = true;
                 orderScript.ShowDialog();
-                orderScript.dialogShowing = true;
             }
         }
     }
