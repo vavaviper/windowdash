@@ -85,6 +85,7 @@ public class Order : MonoBehaviour
         currentRequest.Clear();
         int currentWeight = 0;
         int attempt = 0;
+        orderTaken = false;
 
         while (currentWeight < minWeight && attempt < 100)
         {
