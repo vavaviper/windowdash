@@ -3609,7 +3609,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 843844507}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1965917026}
+        m_TargetAssemblyTypeName: LevelSelect, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level2
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &843844507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4055,6 +4067,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 487139213}
+  - {fileID: 1472146085}
   m_Father: {fileID: 1259306691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4105,7 +4118,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1150327589}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1965917026}
+        m_TargetAssemblyTypeName: LevelSelect, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LevelSelectScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1150327589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4781,7 +4806,6 @@ RectTransform:
   - {fileID: 1707840214}
   - {fileID: 843844505}
   - {fileID: 1150327587}
-  - {fileID: 1472146085}
   m_Father: {fileID: 997417676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5606,17 +5630,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472146084}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4299, y: 0.4299, z: 0.4299}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 661522396}
-  m_Father: {fileID: 1259306691}
+  m_Father: {fileID: 1150327587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.699999, y: -27.5}
+  m_AnchoredPosition: {x: 0, y: -34.194}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1472146086
@@ -6962,7 +6986,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1850096681}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1965917026}
+        m_TargetAssemblyTypeName: LevelSelect, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LevelSelectScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1850096681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7684,6 +7720,7 @@ GameObject:
   - component: {fileID: 1965917024}
   - component: {fileID: 1965917023}
   - component: {fileID: 1965917025}
+  - component: {fileID: 1965917026}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -7740,8 +7777,21 @@ MonoBehaviour:
   failPanel: {fileID: 241403721}
   orderScript: {fileID: 658515900}
   startScreen: {fileID: 788166444}
-  levelName: Level2Completed
+  levelName: Level1Completed
   playerSucceeded: 0
+--- !u!114 &1965917026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965917022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41eb9d0e0a7a8a84b9d30f6583b56e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelButtons: []
 --- !u!1001 &2025076456
 PrefabInstance:
   m_ObjectHideFlags: 0
