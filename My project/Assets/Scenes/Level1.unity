@@ -2386,6 +2386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   orderValid: 1
+  orderScript: {fileID: 658515900}
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &661522395
 GameObject:
@@ -5751,7 +5752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509e34b44089e524184efe7fb141635c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 60
+  timeLimit: 60000
   timerText: {fileID: 1258591051}
   goodJobPanel: {fileID: 1259306690}
   failPanel: {fileID: 1690525407}

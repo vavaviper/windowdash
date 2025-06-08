@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Car : MonoBehaviour
-{   
+{
     public float speed;
     private Vector3 startPosition;
     private float screenRightEdge;
     public bool orderValid = true;
     private bool playerIsNear = false;
+    public Order orderScript;
 
     private Renderer carRenderer;
     private Color originalColor;
@@ -28,6 +29,10 @@ public class Car : MonoBehaviour
         {
             transform.position = startPosition;
             orderValid = false;
+        }
+        if (playerIsNear && Input.GetKeyDown(KeyCode.J))
+        {
+            orderScript.SubmitOrder();
         }
     }
 

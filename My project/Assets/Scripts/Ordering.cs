@@ -13,16 +13,16 @@ public class Order : MonoBehaviour
     public bool dialogShowing = false;
 
     public static string[][] possibleOrders = new string[][]
-    {
+        {
         new string[] { "Apple", "Watermelon", "Orange", "Strawberry" },
-        new string[] { "Rice", "Bread", "Cookies", "Cake" },
-        new string[] { "Soda", "Pop", "Water", "Juice Boxes" },
+        new string[] { "Rice", "Bread", "Cookie", "Cake" },
+        new string[] { "Soda", "Pop", "Water Bottle", "Juice Box" },
         new string[] { "Cheese", "Yogurt", "Ice Cream", "Milk" },
         new string[] { "T-bone steak", "Ham", "Dozen of eggs", "Fish" },
         new string[] { "Toilet paper", "Soap", "Comb", "Shampoo" },
         new string[] { "Prongles", "Dorders", "Chocolate", "Granola Bars" },
-        new string[] { "Tomato", "Cucumber", "Carrot", "Potato" }
-    };
+        new string[] { "Tomato", "Cucumber", "Carrot", "Potatoes" }
+        };
 
     void Start()
     {
@@ -34,16 +34,18 @@ public class Order : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (dialogShowing == true) {
+            if (dialogShowing)
+            {
                 CloseDialog();
             }
-            else {
+            else
+            {
                 ShowDialog();
             }
         }
     }
 
-    static void GenerateRequest()
+    void GenerateRequest()
     {
         currentRequest.Clear();
 
@@ -53,6 +55,40 @@ public class Order : MonoBehaviour
             int item = Random.Range(0, possibleOrders[cat].Length);
             currentRequest.Add(possibleOrders[cat][item]);
         }
+    }
+    public bool validInventory(List<string> curOrder)
+    {
+        List<string> itemNames = Inventory.instance.GetItemNames();
+        foreach (string itemName in itemNames)
+        {
+            if (!curOrder.Contains(itemName))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public void SubmitOrder()
+    {
+        if (validInventory(currentRequest))
+        {
+            List<string> itemNames = Inventory.instance.GetItemNames();
+            foreach (string itemName in itemNames)
+            {
+                currentRequest.Remove(itemName);
+            }
+            Inventory.instance.ClearInventory();
+            if (currentRequest.Count == 0)
+            {
+                Debug.Log("Order Completed!");
+                GenerateRequest();
+            }
+        }
+        else
+        {
+            Debug.Log("Invalid item in the inventory, you must discard at the garbage bin");
+        }
+
     }
 
     void ShowDialog()
