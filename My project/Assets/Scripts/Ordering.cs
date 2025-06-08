@@ -27,20 +27,25 @@ public class Order : MonoBehaviour
 
     void Update()
     {
+        if (dialogShowing) {
+            ShowDialog();
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (dialogShowing)
             {
                 CloseDialog();
+                dialogShowing = false;
             }
             else
             {
                 ShowDialog();
+                dialogShowing = true;
             }
         }
     }
 
-    void GenerateRequest()
+    public void GenerateRequest()
     {
         currentRequest.Clear();
 
@@ -76,6 +81,7 @@ public class Order : MonoBehaviour
             if (currentRequest.Count == 0)
             {
                 Debug.Log("Order Completed!");
+                car.GetComponent<Car>().SpeedChange();
                 GenerateRequest();
             }
         }
