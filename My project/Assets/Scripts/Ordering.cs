@@ -56,10 +56,6 @@ public class Order : MonoBehaviour
 
     void Update()
     {
-        if (dialogShowing)
-        {
-            ShowDialog();
-        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!orderTaken)
