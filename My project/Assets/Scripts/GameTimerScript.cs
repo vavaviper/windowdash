@@ -9,6 +9,8 @@ public class GameTimer : MonoBehaviour
     public TMP_Text timerText; // Or TMP_Text if using TextMeshPro
     public GameObject goodJobPanel;
     public GameObject failPanel;
+    public Order orderScript;
+    public StartScreenManager startScreen;
 
     private float currentTime;
     private bool levelEnded = false;
@@ -40,6 +42,20 @@ public class GameTimer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             playerSucceeded = true;
+        }
+    }
+
+    void checkScore()
+    {
+        int score = orderScript.score;
+        int goal = startScreen.pointsGoal;
+        if (score >= goal)
+        {
+            playerSucceeded = true;
+        }
+        else
+        {
+            playerSucceeded = false;
         }
     }
 

@@ -2639,10 +2639,14 @@ MonoBehaviour:
   dialogBox: {fileID: 1877240771}
   dialogText: {fileID: 1209770457}
   car: {fileID: 658515897}
+  gameTimer: {fileID: 0}
+  scoring: {fileID: 0}
   currentRequest: []
   dialogShowing: 0
   minWeight: 3
   maxWeight: 5
+  extraScoreWeight: 0
+  orderWeight: 0
   currentWeight: 0
 --- !u!114 &658515901
 MonoBehaviour:
@@ -5057,7 +5061,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1049664471031291917, guid: 8fb29ea95d37e3242bfb457d58a9d7fe, type: 3}
       propertyPath: m_Size.x
-      value: 2.4088192
+      value: 2.0672727
       objectReference: {fileID: 0}
     - target: {fileID: 1049664471031291917, guid: 8fb29ea95d37e3242bfb457d58a9d7fe, type: 3}
       propertyPath: m_Size.y
@@ -5065,7 +5069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1049664471031291917, guid: 8fb29ea95d37e3242bfb457d58a9d7fe, type: 3}
       propertyPath: m_Offset.x
-      value: -0.2444098
+      value: -0.41518313
       objectReference: {fileID: 0}
     - target: {fileID: 1049664471031291917, guid: 8fb29ea95d37e3242bfb457d58a9d7fe, type: 3}
       propertyPath: m_Offset.y
@@ -6569,6 +6573,8 @@ MonoBehaviour:
   timerText: {fileID: 1258591051}
   goodJobPanel: {fileID: 1259306690}
   failPanel: {fileID: 1690525407}
+  orderScript: {fileID: 0}
+  startScreen: {fileID: 0}
   playerSucceeded: 0
 --- !u!1 &2008064717
 GameObject:
