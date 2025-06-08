@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Order : MonoBehaviour
 {
@@ -14,10 +15,12 @@ public class Order : MonoBehaviour
 
     public static string[][] possibleOrders = new string[][]
     {
-        new string[] {"Apple", "Orange", "Strawberry","Carrot","Pop","Soap","Soda","Tomato","Yogurt"},
-        new string[] {"Cookie","Cucumber","Water Bottle","Ice Cream"},
-        new string[] {"Cheese", "Juice Box", "Potatoes","Watermelon"}
+        new string[] {"Apple", "Orange", "Strawberry","Carrot","Pop","Soap","Soda","Toilet Paper","Tomato","Bread","Yogurt","Comb",},
+        new string[] {"Cookie","Cucumber","Water Bottle","Ice Cream","Cake","Shampoo","Fish","Steak","Ham"},
+        new string[] {"Cheese", "Juice Box", "Potatoes","Watermelon","Rice"}
     };
+
+       
 
     void Start()
     {
