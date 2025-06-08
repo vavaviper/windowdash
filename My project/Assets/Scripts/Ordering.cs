@@ -13,16 +13,11 @@ public class Order : MonoBehaviour
     public bool dialogShowing = false;
 
     public static string[][] possibleOrders = new string[][]
-        {
-        new string[] { "Apple", "Watermelon", "Orange", "Strawberry" },
-        new string[] { "Rice", "Bread", "Cookie", "Cake" },
-        new string[] { "Soda", "Pop", "Water Bottle", "Juice Box" },
-        new string[] { "Cheese", "Yogurt", "Ice Cream", "Milk" },
-        new string[] { "T-bone steak", "Ham", "Dozen of eggs", "Fish" },
-        new string[] { "Toilet paper", "Soap", "Comb", "Shampoo" },
-        new string[] { "Prongles", "Dorders", "Chocolate", "Granola Bars" },
-        new string[] { "Tomato", "Cucumber", "Carrot", "Potatoes" }
-        };
+    {
+        new string[] {"Apple", "Orange", "Strawberry","Carrot","Pop","Soap","Soda","Tomato","Yogurt"},
+        new string[] {"Cookie","Cucumber","Water Bottle","Ice Cream"},
+        new string[] {"Cheese", "Juice Box", "Potatoes","Watermelon"}
+    };
 
     void Start()
     {
