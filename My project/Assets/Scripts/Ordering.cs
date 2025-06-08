@@ -18,8 +18,8 @@ public class Order : MonoBehaviour
     // Weight-based item categories: [0] = weight 1, [1] = weight 2, [2] = weight 3
     public static string[][] possibleOrders = new string[][]
     {
-        new string[] {"Apple", "Orange", "Strawberry","Carrot","Pop","Soap","Soda","Toilet Paper","Tomato","Bread","Yogurt","Comb"},
-        new string[] {"Cookie","Cucumber","Water Bottle","Ice Cream","Cake","Shampoo","Fish","Steak","Ham"},
+        new string[] {"Apple", "Orange", "Strawberry","Carrot","Pop","Soap","Soda","Toilet Paper","Tomato","Bread","Yogurt","Comb","Prongle","Dorders","Chocolate Bar"},
+        new string[] {"Cookie","Cucumber","Water Bottle","Ice Cream","Cake","Shampoo","Fish","Steak","Ham","Milk","Granola Bars"},
         new string[] {"Cheese", "Juice Box", "Potatoes","Watermelon","Rice"}
     };
 

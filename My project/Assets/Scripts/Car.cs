@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 public class Car : MonoBehaviour
 {
     public float normalspeed = 0.3f;
-    public float driveAwaySpeed = 10f;
+    public float driveAwaySpeed = 20f;
     private Vector3 startPosition;
     private float screenRightEdge;
     private bool playerIsNear = false;

@@ -35,6 +35,7 @@ public class GameTimer : MonoBehaviour
 
         if (currentTime <= 0f)
         {
+            checkScore(); // <-- Call this ONLY when time runs out
             EndLevel();
         }
 
@@ -44,6 +45,7 @@ public class GameTimer : MonoBehaviour
             playerSucceeded = true;
         }
     }
+
 
     void checkScore()
     {
