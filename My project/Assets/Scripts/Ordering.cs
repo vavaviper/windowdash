@@ -66,12 +66,10 @@ public class Order : MonoBehaviour
             else if (dialogShowing)
             {
                 CloseDialog();
-                dialogShowing = false;
             }
             else
             {
                 ShowDialog();
-                dialogShowing = true;
             }
         }
     }
@@ -136,6 +134,7 @@ public class Order : MonoBehaviour
             {
                 Debug.Log("Order Completed!");
                 updateScore();
+                CloseDialog();
                 car.GetComponent<Car>().SpeedChange();
             }
         }
