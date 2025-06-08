@@ -12,6 +12,8 @@ public class GameTimer : MonoBehaviour
     public Order orderScript;
     public StartScreenManager startScreen;
 
+    public string levelName;
+
     private float currentTime;
     private bool levelEnded = false;
 
@@ -87,7 +89,7 @@ public class GameTimer : MonoBehaviour
         {
             // ✅ Mark this level as completed
             string currentScene = SceneManager.GetActiveScene().name;
-            PlayerPrefs.SetInt("Level1Completed", 1);
+            PlayerPrefs.SetInt(levelName, 1);
             PlayerPrefs.Save();
 
             goodJobPanel.SetActive(true);
