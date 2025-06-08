@@ -2979,8 +2979,8 @@ MonoBehaviour:
   orderTaken: 0
   currentRequest: []
   dialogShowing: 0
-  minWeight: 5
-  maxWeight: 9
+  minWeight: 8
+  maxWeight: 12
   extraScoreWeight: 0
   orderWeight: 0
   currentWeight: 0
@@ -3439,7 +3439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startScreenPanel: {fileID: 164013368}
   startScreenText: {fileID: 446332011}
-  pointsGoal: 16
+  pointsGoal: 44
 --- !u!1 &827742337
 GameObject:
   m_ObjectHideFlags: 0
