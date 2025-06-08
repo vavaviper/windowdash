@@ -85,7 +85,6 @@ public class Order : MonoBehaviour
             {
                 Debug.Log("Order Completed!");
                 car.GetComponent<Car>().SpeedChange();
-                GenerateRequest();
             }
         }
         else
