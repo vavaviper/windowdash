@@ -6,6 +6,8 @@ In this chaotic grocery pickup simulator, players race against time to fulfill c
 
 Strategy meets speed,  plan your runs, pick lighter or heavier items wisely, and stay calm under pressure to become the ultimate grocery runner! 🛒  
 
+**Demo:** [Youtube Video](https://youtu.be/V1NB5lXH1gQ)  
+
 ---
 
 ## 🎮 Play the Game  
